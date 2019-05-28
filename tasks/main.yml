@@ -55,7 +55,7 @@
   with_items:
     - { dest: "/etc/ceph" }
     - { dest: "/lib/systemd/system" }
-    - { dest: "/var/lib/ceph/radosgw/ceph-{{ ansible_hostname }}", owner: "ceph", group: "ceph" }
+    - { dest: "/var/lib/ceph/radosgw/ceph-rgw.{{ ansible_hostname }}", owner: "ceph", group: "ceph" }
   tags: ceph_rgw
 
 - name: copy templates
