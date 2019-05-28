@@ -15,5 +15,5 @@
 # limitations under the License.
 
 _yum: [
-  { state: "latest", name: "ceph-radowgw" },
+  { state: "latest", name: "ceph-radosgw" },
 ]
