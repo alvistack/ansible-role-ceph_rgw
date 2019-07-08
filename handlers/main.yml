@@ -26,7 +26,7 @@
   service:
     name: "{{ item.name }}"
     state: restarted
-  with_items:
+  loop:
     - { name: "ceph-radosgw.target" }
     - { name: "ceph-radosgw@rgw.{{ ansible_hostname }}" }
   changed_when: false
