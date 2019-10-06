@@ -131,10 +131,6 @@
     - ceph_rgw | systemctl restart
   tags: ceph_rgw
 
-- name: flush handlers
-  meta: flush_handlers
-  tags: ceph_rgw
-
 - name: enable services
   service:
     name: "{{ item.name }}"
@@ -144,4 +140,8 @@
     - { name: "ceph-radosgw@rgw.{{ ansible_hostname }}" }
   changed_when: false
   ignore_errors: true
+  tags: ceph_rgw
+
+- name: flush handlers
+  meta: flush_handlers
   tags: ceph_rgw
