@@ -1,4 +1,4 @@
-# Ansible Role for ceph-rgw
+# Ansible Role for Ceph Object Gateway Daemon
 
 ## 4.3.0 - TBC
 
