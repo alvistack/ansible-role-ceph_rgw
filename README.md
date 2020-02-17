@@ -1,11 +1,11 @@
-# Ansible Role for ceph-rgw
+# Ansible Role for Ceph Object Gateway Daemon
 
-[![Travis](https://img.shields.io/travis/alvistack/ansible-role-ceph-rgw.svg)](https://travis-ci.org/alvistack/ansible-role-ceph-rgw)
-[![GitHub release](https://img.shields.io/github/release/alvistack/ansible-role-ceph-rgw.svg)](https://github.com/alvistack/ansible-role-ceph-rgw)
-[![GitHub license](https://img.shields.io/github/license/alvistack/ansible-role-ceph-rgw.svg)](https://github.com/alvistack/ansible-role-ceph-rgw/blob/master/LICENSE)
+[![Travis](https://img.shields.io/travis/alvistack/ansible-role-ceph_rgw.svg)](https://travis-ci.org/alvistack/ansible-role-ceph_rgw)
+[![GitHub release](https://img.shields.io/github/release/alvistack/ansible-role-ceph_rgw.svg)](https://github.com/alvistack/ansible-role-ceph_rgw)
+[![GitHub license](https://img.shields.io/github/license/alvistack/ansible-role-ceph_rgw.svg)](https://github.com/alvistack/ansible-role-ceph_rgw/blob/master/LICENSE)
 [![Ansible Role](https://img.shields.io/badge/galaxy-alvistack.ceph_rgw-blue.svg)](https://galaxy.ansible.com/alvistack/ceph_rgw)
 
-Ansible Role for ceph-rgw Installation.
+Ansible Role for Ceph Object Gateway Daemon Installation.
 
 ## Requirements
 
