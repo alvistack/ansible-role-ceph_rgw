@@ -135,7 +135,7 @@
   meta: flush_handlers
   tags: ceph_rgw
 
-- name: enable services
+- name: start services
   service:
     name: "{{ item.name }}"
     state: "started"
