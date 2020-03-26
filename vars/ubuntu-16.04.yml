@@ -15,4 +15,5 @@
 # limitations under the License.
 
 _apt:
-  - { state: "latest", name: "radosgw" }
+  nautilus:
+    - { state: "latest", name: "radosgw" }
