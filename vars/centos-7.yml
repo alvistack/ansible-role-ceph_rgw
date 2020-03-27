@@ -15,5 +15,7 @@
 # limitations under the License.
 
 _yum:
-  nautilus:
+  "15.2":
+    - { state: "latest", name: "ceph-radosgw" }
+  "14.2":
     - { state: "latest", name: "ceph-radosgw" }
