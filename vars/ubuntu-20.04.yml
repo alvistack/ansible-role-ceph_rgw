@@ -17,5 +17,4 @@
 _apt:
   "15.2":
     - { state: "latest", name: "radosgw" }
-  "14.2":
-    - { state: "latest", name: "radosgw" }
+  "14.2": []
