@@ -20,7 +20,7 @@
   changed_when: false
   ignore_errors: true
 
-- name: ceph_rgw | systemctl restart
+- name: ceph_rgw | systemctl restart ceph-radosgw.target
   service:
     name: "ceph-radosgw.target"
     state: "restarted"
