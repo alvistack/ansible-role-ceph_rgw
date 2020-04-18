@@ -151,12 +151,9 @@
 
 - name: start services
   service:
-    name: "{{ item.name }}"
+    name: "ceph-radosgw.target"
     state: "started"
     enabled: true
-  loop:
-    - { name: "ceph-radosgw.target" }
-    - { name: "ceph-radosgw@rgw.{{ ansible_hostname }}" }
   changed_when: false
   ignore_errors: true
   tags: ceph_rgw
