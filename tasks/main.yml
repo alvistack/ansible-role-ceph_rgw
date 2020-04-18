@@ -149,7 +149,16 @@
   meta: flush_handlers
   tags: ceph_rgw
 
-- name: start services
+- name: "systemctl start ceph-radosgw@rgw.{{ ansible_hostname }}"
+  service:
+    name: "ceph-radosgw@rgw.{{ ansible_hostname }}"
+    state: "started"
+    enabled: true
+  changed_when: false
+  ignore_errors: true
+  tags: ceph_rgw
+
+- name: systemctl start ceph-radosgw.target
   service:
     name: "ceph-radosgw.target"
     state: "started"
