@@ -58,7 +58,7 @@
   loop:
     - { dest: "/etc/ceph" }
     - { dest: "/lib/systemd/system" }
-    - { dest: "/var/lib/ceph/radosgw/ceph-rgw.{{ ansible_hostname }}", owner: "ceph", group: "ceph" }
+    - { dest: "/var/lib/ceph/radosgw/ceph-rgw.{{ inventory_hostname }}", owner: "ceph", group: "ceph" }
   tags: ceph_rgw
 
 - name: touch files
@@ -102,15 +102,15 @@
   shell: |
     set -o pipefail
     ceph \
-      auth get-or-create client.rgw.{{ ansible_hostname }} \
+      auth get-or-create client.rgw.{{ inventory_hostname }} \
       mon 'allow rw' \
       osd 'allow rwx' \
-      --out-file /var/lib/ceph/radosgw/ceph-rgw.{{ ansible_hostname }}/keyring
-    chown ceph:ceph /var/lib/ceph/radosgw/ceph-rgw.{{ ansible_hostname }}/keyring
-    chmod 0600 /var/lib/ceph/radosgw/ceph-rgw.{{ ansible_hostname }}/keyring
+      --out-file /var/lib/ceph/radosgw/ceph-rgw.{{ inventory_hostname }}/keyring
+    chown ceph:ceph /var/lib/ceph/radosgw/ceph-rgw.{{ inventory_hostname }}/keyring
+    chmod 0600 /var/lib/ceph/radosgw/ceph-rgw.{{ inventory_hostname }}/keyring
   args:
     executable: "/bin/bash"
-    creates: "/var/lib/ceph/radosgw/ceph-rgw.{{ ansible_hostname }}/keyring"
+    creates: "/var/lib/ceph/radosgw/ceph-rgw.{{ inventory_hostname }}/keyring"
   register: result
   changed_when: result is not succeeded
   notify:
@@ -140,14 +140,14 @@
     state: "{{ item.state | default('file') }}"
   loop:
     - { dest: "/lib/systemd/system/ceph-radosgw@.service" }
-    - { dest: "/var/lib/ceph/radosgw/ceph-rgw.{{ ansible_hostname }}/keyring", owner: "ceph", group: "ceph", mode: "0600" }
+    - { dest: "/var/lib/ceph/radosgw/ceph-rgw.{{ inventory_hostname }}/keyring", owner: "ceph", group: "ceph", mode: "0600" }
   notify:
     - ceph_rgw | systemctl restart ceph-radosgw.target
   tags: ceph_rgw
 
-- name: "systemctl start ceph-radosgw@rgw.{{ ansible_hostname }}"
+- name: "systemctl start ceph-radosgw@rgw.{{ inventory_hostname }}"
   service:
-    name: "ceph-radosgw@rgw.{{ ansible_hostname }}"
+    name: "ceph-radosgw@rgw.{{ inventory_hostname }}"
     state: "started"
     enabled: true
   changed_when: false
