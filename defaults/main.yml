@@ -17,7 +17,7 @@
 # Ceph version.
 ceph_release: "15.2"
 
-# Ceph rgw configs.
+# Ceph Object Gateway Daemon configs.
 ceph_rgw_config:
   - { state: "present", section: "rgw", option: "rgw frontends", value: "beast" }
   - { state: "present", section: "rgw", option: "rgw cache enabled", value: "true" }
