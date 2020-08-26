@@ -58,6 +58,7 @@
   loop:
     - { dest: "/etc/ceph" }
     - { dest: "/lib/systemd/system" }
+    - { dest: "/lib/systemd/system/ceph-radosgw.target.d" }
     - { dest: "/var/lib/ceph/radosgw/ceph-rgw.{{ inventory_hostname }}", owner: "ceph", group: "ceph" }
   tags: ceph_rgw
 
@@ -146,9 +147,9 @@
     - ceph_rgw | systemctl restart ceph-radosgw.target
   tags: ceph_rgw
 
-- name: "systemctl start ceph-radosgw@rgw.{{ inventory_hostname }}"
+- name: "systemctl start ceph-radosgw@rgw.{{ inventory_hostname }}.service"
   service:
-    name: "ceph-radosgw@rgw.{{ inventory_hostname }}"
+    name: "ceph-radosgw@rgw.{{ inventory_hostname }}.service"
     state: "started"
     enabled: true
   changed_when: false
