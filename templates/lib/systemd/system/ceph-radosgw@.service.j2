@@ -2,34 +2,30 @@
 
 [Unit]
 Description=Ceph rados gateway
-After=network-online.target local-fs.target time-sync.target
-Wants=network-online.target local-fs.target time-sync.target
+After=network-online.target local-fs.target time-sync.target ceph-mon.target
+Wants=network-online.target local-fs.target time-sync.target ceph-mon.target
 PartOf=ceph-radosgw.target
 
 [Service]
-Environment=CLUSTER=ceph
-EnvironmentFile=-/etc/default/ceph
-ExecStart=/usr/bin/radosgw -f --cluster ${CLUSTER} --name client.%i --setuser ceph --setgroup ceph
 LimitNOFILE=1048576
 LimitNPROC=1048576
+EnvironmentFile=-/etc/default/ceph
+Environment=CLUSTER=ceph
+ExecStart=/usr/bin/radosgw -f --cluster ${CLUSTER} --name client.%i --setuser ceph --setgroup ceph
 LockPersonality=true
 MemoryDenyWriteExecute=true
 NoNewPrivileges=true
-PrivateDevices=yes
-PrivateTmp=true
-ProtectClock=true
+#PrivateDevices=yes
 ProtectControlGroups=true
 ProtectHome=true
-ProtectHostname=true
-ProtectKernelLogs=true
 ProtectKernelModules=true
 ProtectKernelTunables=true
 ProtectSystem=full
-Restart=on-failure
-RestrictSUIDSGID=true
-StartLimitBurst=5
-StartLimitInterval=30s
+PrivateTmp=true
 TasksMax=infinity
+Restart=on-failure
+StartLimitInterval=30s
+StartLimitBurst=5
 
 [Install]
 WantedBy=ceph-radosgw.target
