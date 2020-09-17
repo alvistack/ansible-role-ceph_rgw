@@ -4,8 +4,8 @@
 Description=Ceph rados gateway
 PartOf=ceph-radosgw.target
 After=network-online.target local-fs.target time-sync.target
-Before=ceph-radosgw.target
-Wants=network-online.target local-fs.target time-sync.target ceph-radosgw.target
+Before=remote-fs-pre.target ceph-radosgw.target
+Wants=network-online.target local-fs.target time-sync.target remote-fs-pre.target ceph-radosgw.target
 RequiresMountsFor=/var/lib/ceph
 
 [Service]
