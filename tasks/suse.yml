@@ -26,4 +26,3 @@
   until: result is succeeded
   notify:
     - ceph_rgw | systemctl restart ceph-radosgw.target
-  tags: ceph_rgw

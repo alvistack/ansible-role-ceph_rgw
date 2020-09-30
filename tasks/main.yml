@@ -16,7 +16,6 @@
 
 - name: include default variables
   include_vars: "../vars/main.yml"
-  tags: ceph_rgw
 
 - name: include release specific variables
   include_vars: "{{ lookup('first_found', _params) }}"
@@ -31,7 +30,6 @@
       paths:
         - "../vars"
   ignore_errors: true
-  tags: ceph_rgw
 
 - name: include release specific tasks
   include_tasks: "{{ lookup('first_found', _params) }}"
@@ -46,7 +44,6 @@
       paths:
         - "."
   ignore_errors: true
-  tags: ceph_rgw
 
 - name: prepare directories
   file:
@@ -60,7 +57,6 @@
     - { dest: "/lib/systemd/system" }
     - { dest: "/lib/systemd/system/ceph-radosgw.target.d" }
     - { dest: "/var/lib/ceph/radosgw/ceph-rgw.{{ inventory_hostname }}", owner: "ceph", group: "ceph" }
-  tags: ceph_rgw
 
 - name: touch files
   copy:
@@ -72,7 +68,6 @@
     force: false
   loop:
     - { dest: "/etc/ceph/ceph.conf", owner: "ceph", group: "ceph" }
-  tags: ceph_rgw
 
 - name: tweak settings in ini files
   ini_file:
@@ -85,7 +80,6 @@
   loop: "{{ ceph_rgw_config }}"
   notify:
     - ceph_rgw | systemctl restart ceph-radosgw.target
-  tags: ceph_rgw
 
 - name: prepare files
   file:
@@ -98,7 +92,6 @@
     - { dest: "/etc/ceph/ceph.conf", owner: "ceph", group: "ceph" }
   notify:
     - ceph_rgw | systemctl restart ceph-radosgw.target
-  tags: ceph_rgw
 
 - name: create manager keyring
   shell: |
@@ -117,7 +110,6 @@
   changed_when: result is not succeeded
   notify:
     - ceph_rgw | systemctl restart ceph-radosgw.target
-  tags: ceph_rgw
 
 - name: copy templates
   template:
@@ -132,7 +124,6 @@
   notify:
     - ceph_rgw | systemctl daemon-reload
     - ceph_rgw | systemctl restart ceph-radosgw.target
-  tags: ceph_rgw
 
 - name: prepare files
   file:
@@ -148,7 +139,6 @@
   notify:
     - ceph_rgw | systemctl daemon-reload
     - ceph_rgw | systemctl restart ceph-radosgw.target
-  tags: ceph_rgw
 
 - name: "systemctl start ceph-radosgw@rgw.{{ inventory_hostname }}.service"
   service:
@@ -157,7 +147,6 @@
     enabled: true
   changed_when: false
   ignore_errors: true
-  tags: ceph_rgw
 
 - name: systemctl start ceph-radosgw.target
   service:
@@ -166,8 +155,6 @@
     enabled: true
   changed_when: false
   ignore_errors: true
-  tags: ceph_rgw
 
 - name: flush handlers
   meta: flush_handlers
-  tags: ceph_rgw
