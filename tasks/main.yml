@@ -140,6 +140,9 @@
     - ceph_rgw | systemctl daemon-reload
     - ceph_rgw | systemctl restart ceph-radosgw.target
 
+- name: flush handlers
+  meta: flush_handlers
+
 - name: "systemctl start ceph-radosgw@rgw.{{ inventory_hostname }}.service"
   service:
     name: "ceph-radosgw@rgw.{{ inventory_hostname }}.service"
@@ -155,6 +158,3 @@
     enabled: true
   changed_when: false
   ignore_errors: true
-
-- name: flush handlers
-  meta: flush_handlers
