@@ -95,7 +95,7 @@
 
 - name: create manager keyring
   shell: |
-    set -o pipefail
+    set -euo pipefail
     ceph \
       auth get-or-create client.rgw.{{ inventory_hostname }} \
       mon 'allow rw' \
