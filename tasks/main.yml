@@ -144,10 +144,12 @@
   meta: flush_handlers
 
 - name: "systemctl start ceph-radosgw@rgw.{{ inventory_hostname }}.service"
-  service:
-    name: "ceph-radosgw@rgw.{{ inventory_hostname }}.service"
-    state: "started"
-    enabled: true
+  shell:
+    set -euo pipefail
+    systemctl enable ceph-radosgw@rgw.{{ inventory_hostname }}.service
+    systemctl start ceph-radosgw@rgw.{{ inventory_hostname }}.service
+  args:
+    executable: "/bin/bash"
   changed_when: false
   ignore_errors: true
 
