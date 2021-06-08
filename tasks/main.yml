@@ -103,7 +103,7 @@
 
 - name: create manager keyring
   shell: |
-    set -euo pipefail
+    set -euxo pipefail
     ceph \
       auth get-or-create client.rgw.{{ inventory_hostname }} \
       mon 'allow rw' \
@@ -157,7 +157,7 @@
 
 - name: "systemctl start ceph-radosgw@rgw.{{ inventory_hostname }}.service"
   shell: |
-    set -euo pipefail
+    set -euxo pipefail
     systemctl enable ceph-radosgw@rgw.{{ inventory_hostname }}.service
     systemctl start ceph-radosgw@rgw.{{ inventory_hostname }}.service
   args:
