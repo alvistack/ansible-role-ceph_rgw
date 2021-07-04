@@ -130,6 +130,7 @@
     owner: "{{ item.owner | default('ceph') }}"
     group: "{{ item.group | default('ceph') }}"
     mode: "{{ item.mode | default('0400') }}"
+    state: "present"
   loop:
     - name: "client.rgw.{{ inventory_hostname }}"
       dest: "/var/lib/ceph/radosgw/ceph-rgw.{{ inventory_hostname }}/keyring"
