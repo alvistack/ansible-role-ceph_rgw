@@ -1,5 +1,7 @@
 # Ansible Role for Ceph Object Gateway Daemon
 
+<img src="/alvistack.svg" width="75" alt="AlviStack">
+
 [![Gitlab pipeline status](https://img.shields.io/gitlab/pipeline/alvistack/ansible-role-ceph_rgw/master)](https://gitlab.com/alvistack/ansible-role-ceph_rgw/-/pipelines)
 [![GitHub release](https://img.shields.io/github/release/alvistack/ansible-role-ceph_rgw.svg)](https://github.com/alvistack/ansible-role-ceph_rgw/releases)
 [![GitHub license](https://img.shields.io/github/license/alvistack/ansible-role-ceph_rgw.svg)](https://github.com/alvistack/ansible-role-ceph_rgw/blob/master/LICENSE)
