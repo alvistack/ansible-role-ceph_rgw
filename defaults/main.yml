@@ -21,3 +21,4 @@ ceph_release: "{{ _ceph_release }}"
 ceph_rgw_config:
   - { state: "present", section: "rgw", option: "rgw_cache_enabled", value: "true" }
   - { state: "present", section: "rgw", option: "rgw_frontends", value: "beast" }
+  - { state: "present", section: "rgw", option: "rgw_rados_pool_pg_num_min", value: "8" }
