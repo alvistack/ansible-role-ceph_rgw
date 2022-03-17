@@ -15,7 +15,7 @@
 # limitations under the License.
 
 - name: ceph_rgw | systemctl restart ceph-radosgw.target
-  service:
+  ansible.builtin.service:
     name: "ceph-radosgw.target"
     state: "restarted"
     enabled: true
