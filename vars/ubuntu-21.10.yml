@@ -19,5 +19,5 @@ _ceph_release: "16.2"
 _apt:
   "17.2": []
   "16.2":
-    - { state: "present", name: "radosgw={{ ceph_version }}*" }
+    - { state: "present", name: "radosgw" }
   "15.2": []
