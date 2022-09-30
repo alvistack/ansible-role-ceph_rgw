@@ -99,7 +99,7 @@
     - { dest: "/etc/ceph/ceph.conf", owner: "ceph", group: "ceph" }
 
 - name: tweak settings in ini files
-  ini_file:
+  community.general.ini_file:
     section: "{{ item.section }}"
     option: "{{ item.option }}"
     value: "{{ item.value }}"
@@ -123,7 +123,7 @@
     - ceph_rgw | systemctl restart ceph-radosgw.target
 
 - name: create client.rgw keyring
-  ceph_key:
+  ceph_key: # noqa fqcn[action]
     name: "{{ item.name }}"
     dest: "{{ item.dest }}"
     caps: "{{ item.caps | default(omit) }}"
