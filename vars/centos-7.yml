@@ -17,4 +17,7 @@
 _ceph_release: "15.2"
 
 _yum:
+  - { state: present, name: "ceph-base-100:{{ ceph_version }}*" }
+  - { state: present, name: "librados2-100:{{ ceph_version }}*" }
+  - { state: present, name: "librgw2-100:{{ ceph_version }}*" }
   - { state: present, name: "ceph-radosgw-100:{{ ceph_version }}*" }

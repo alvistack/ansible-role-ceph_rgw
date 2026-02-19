@@ -17,4 +17,7 @@
 _ceph_release: "19.2"
 
 _apt:
+  - { state: present, name: "ceph-base=100:{{ ceph_version }}*" }
+  - { state: present, name: "librados2=100:{{ ceph_version }}*" }
+  - { state: present, name: "librgw2=100:{{ ceph_version }}*" }
   - { state: present, name: "radosgw=100:{{ ceph_version }}*" }
