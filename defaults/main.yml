@@ -21,9 +21,10 @@ ceph_release: "{{ _ceph_release }}"
 ceph_version: "{{ _ceph_version[ceph_release] }}"
 
 # Ceph detected memory total (default with 8192Mi).
-ceph_memtotal_mb: "{{ (((ansible_facts['memtotal_mb'] / 1024) | round(0, 'ceil')) * 1024) | int }}"
+ceph_memtotal_mb: "{{ (((ansible_facts['memtotal_mb'] + 1023) // 1024) * 1024) | int }}"
 
 # Ceph Object Gateway Daemon configs.
+# See https://github.com/ceph/ceph/blob/main/src/common/options/rgw.yaml.in
 ceph_rgw_config:
   - { state: present, section: rgw, option: rgw_cache_enabled, value: "true" }
   - { state: present, section: rgw, option: rgw_frontends, value: beast }
