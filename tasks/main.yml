@@ -61,7 +61,7 @@
     state: "{{ item.state | default('directory') }}"
   loop:
     - { dest: /etc/ceph }
-    - { dest: "/var/lib/ceph/radosgw/ceph-{{ inventory_hostname }}", owner: ceph, group: ceph }
+    - { dest: "/var/lib/ceph/radosgw/ceph-rgw.{{ inventory_hostname }}", owner: ceph, group: ceph }
 
 - name: base64 encode
   ansible.builtin.shell:
@@ -123,7 +123,7 @@
   notify:
     - ceph_rgw | systemctl restart ceph-radosgw.target
 
-- name: create rgw keyring
+- name: create client.rgw keyring
   ceph_key: # noqa fqcn[action]
     name: "{{ item.name }}"
     dest: "{{ item.dest }}"
@@ -134,8 +134,8 @@
     mode: "{{ item.mode | default('0400') }}"
     state: present
   loop:
-    - name: rgw.{{ inventory_hostname }}
-      dest: /var/lib/ceph/radosgw/ceph-{{ inventory_hostname }}/keyring
+    - name: client.rgw.{{ inventory_hostname }}
+      dest: /var/lib/ceph/radosgw/ceph-rgw.{{ inventory_hostname }}/keyring
       caps: { mon: allow rw, osd: allow rwx }
   notify:
     - ceph_rgw | systemctl restart ceph-radosgw.target
@@ -148,7 +148,7 @@
     mode: "{{ item.mode | default('0644') }}"
     state: "{{ item.state | default('file') }}"
   loop:
-    - { dest: "/var/lib/ceph/radosgw/ceph-{{ inventory_hostname }}/keyring", owner: ceph, group: ceph, mode: "0400" }
+    - { dest: "/var/lib/ceph/radosgw/ceph-rgw.{{ inventory_hostname }}/keyring", owner: ceph, group: ceph, mode: "0400" }
   notify:
     - ceph_rgw | systemctl restart ceph-radosgw.target
 
